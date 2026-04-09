@@ -1,0 +1,286 @@
+Id,Label
+1,Shaheed Sthal(First Station)
+1,Samaypur Badli(First Station)
+1,Dwarka Sector 21(First station) [Conn: Orange]
+1,Yamuna Bank
+1,Ashok Park Main
+1,Inderlok Conn:Red
+1,Sector 55-66
+1,Kashmere Gate [Conn: Yellow]
+1,Janak Puri West [Conn: Blue]
+1,Majlis Park
+1,Noida Sector 51 [Conn: Blue]
+1,Dwarka [Conn: Blue]
+1,New Delhi-Airport Express [Conn: Yellow]
+2,Hindon River
+2,Rohini Sector 18-19
+2,Dwarka Sector 8
+2,Laxmi Nagar
+2,Satguru Ram Singh Marg
+2,Ashok Park Main
+2,Sector 54 Chowk
+2,Lal Quila
+2,Dabri Mor - Janakpuri South
+2,Azadpur [Conn: Yellow]
+2,Noida Sector 50
+2,Nangli
+2,Shivaji Stadium
+3,Arthala
+3,Haiderpur Badli Mor
+3,Dwarka Sector 9
+3,Nirman Vihar
+3,Kirti Nagar [Conn: Blue]
+3,Punjabi Bagh
+3,Sector 53-54
+3,Jama Masjid
+3,Dashrath Puri
+3,Shalimar Bagh
+3,Noida Sector 76
+3,Najafgarh
+3,Dhaula Kuan [Conn: Pink]
+4,Mohan Nagar
+4,Jahangirpuri
+4,Dwarka Sector 10
+4,Preet Vihar
+4,Shivaji Park
+4,Sector 42-43
+4,Delhi Gate
+4,Palam
+4,Netaji Subash Place [Conn: Red]
+4,Noida Sector 101
+4,Delhi Aerocity
+5,Shyam park
+5,Adarsh Nagar
+5,Dwarka Sector 11
+5,Karkar Duma [Conn: Pink]
+5,Madipur
+5,DLF Phase 1
+5,ITO
+5,Sadar Bazaar Cantonment
+5,Shakurpur
+5,Noida Sector 81
+5,IGI Airport
+6,Major Mohit Sharma
+6,Azadpur [Conn: Pink]
+6,Dwarka Sector 12
+6,Anand Vihar [Conn: Pink]
+6,Paschim Vihar (East)
+6,Sikandarpur [Conn: Yellow]
+6,Mandi House [Conn: Blue]
+6,Terminal 1 IGI Airport
+6,Punjabi Bagh West
+6,NSEZ Noida
+6,Dwarka Sector 21 [Conn: Blue]
+7,Raj Bagh
+7,Model Town
+7,Dwarka Sector 13
+7,Kaushambi
+7,Paschim Vihar (West)
+7,DLF Phase 2
+7,Janpath
+7,Shankar Vihar
+7,ESI BASAI DARAPUR
+7,Noida Sector 83
+8,Shaheed Nagar
+8,Guru Tegh Bahadur Nagar
+8,Dwarka Sector 14
+8,Vaishali
+8,Peera Garhi
+8,Belvedere Towers
+8,Central Secretariat [Conn: Yellow]
+8,Vasant Vihar
+8,Rajouri Garden [Conn: Blue]
+8,Noida Sector 137
+9,Dilshad Garden
+9,Vishwavidyalaya
+9,Dwarka [Conn: Gray]
+9,Udyog Nagar
+9,Cyber City
+9,Khan Market
+9,Munirka
+9,Maya Puri
+9,Noida Sector 142
+10,Jhil Mil
+10,Vidhan Sabha
+10,Dwarka Mor
+10,Maharaja Surajmal Stadium
+10,Moulsari Avenue
+10,Jawaharlal Nehru Stadium
+10,RK Puram
+10,Naraina Vihar
+10,Noida Sector 143
+11,Mansarovar Park
+11,Civil Lines
+11,Nawada
+11,Nangloi
+11,DLF Phase 3
+11,Jangpura
+11,IIT Delhi
+11,Delhi Cantt
+11,Noida Sector 144
+12,Shahdara
+12,Kashmere Gate [Conn: Violet]
+12,Uttam Nagar West
+12,Nangloi Railway Station
+12,Lajpat Nagar [Conn: Pink]
+12,Hauz Khas [Conn: Yellow]
+12,Durgabai Deshmukh South Campus [Conn: Orange]
+12,Noida Sector 145
+13,Welcome [Conn: Pink]
+13,Chandni Chowk
+13,Uttam Nagar East
+13,Rajdhani Park
+13,Moolchand
+13,Panchsheel Park
+13,Sir Vishweshwaraiah Moti Bagh
+13,Noida Sector 146
+14,Seelampur
+14,Chawri Bazar
+14,Janak Puri West [Conn: Magenta]
+14,Mundka
+14,Kailash Colony
+14,Chirag Delhi
+14,Bhikaji Cama Place
+14,Noida Sector 147
+15,Shastri Park
+15,New Delhi [Conn: Orange]
+15,Janak Puri East
+15,Mundka Industrial Area (MIA)
+15,Nehru Place
+15,Greater Kailash
+15,Sarojini Nagar
+15,Noida Sector 148
+16,"Kashmere Gate [Conn: Violet,Yellow]"
+16,Rajiv Chowk [Conn: Blue]
+16,Tilak Nagar
+16,Ghevra Metro station
+16,Kalkaji Mandir [Conn: Magenta]
+16,Nehru Enclave
+16,Dilli Haat INA [Conn: Yellow]
+16,Knowledge Park II
+17,Tis Hazari
+17,Patel Chowk
+17,Subhash Nagar
+17,Tikri Kalan
+17,Govind Puri
+17,Kalkaji Mandir [Conn: Violet]
+17,South Extension
+17,Pari Chowk Greater Noida
+18,Pul Bangash
+18,Central Secretariat [Conn: Violet]
+18,Tagore Garden
+18,Tikri Border
+18,Okhla
+18,Okhla NSIC
+18,Lajpat Nagar [Conn: Violet]
+18,Alpha 1 Greater Noida
+19,Pratap Nagar
+19,Udyog Bhawan
+19,Rajouri Garden [Conn: Pink]
+19,Pandit Shree Ram Sharma
+19,Jasola
+19,Sukhdev Vihar
+19,Vinobapuri
+19,Delta 1 Greater Noida
+20,Shastri Nagar
+20,Lok Kalyan Marg
+20,Ramesh Nagar
+20,Bahdurgarh City
+20,Sarita Vihar
+20,JAMIA MILLIA ISLAMIA
+20,Ashram
+20,GNIDA Office
+21,Inderlok [Conn: Green]
+21,Jor Bagh
+21,Moti Nagar
+21,Brigadier Hoshiar Singh
+21,Mohan Estate
+21,Okhla Vihar
+21,Sarai Kale Khan Hazrat Nizamuddin
+21,Depot Greater Noida
+22,Kanhaiya Nagar
+22,Dilli Haat INA [Conn: Pink]
+22,Kirti Nagar [Conn: Green]
+22,Tughlakabad
+22,Jasola Vihar Shaheen Bagh
+22,Mayur Vihar Phase-1 [Conn: Blue]
+23,Keshav Puram
+23,AIIMS
+23,Shadipur
+23,Badarpur Border
+23,Kalindi Kunj
+23,Mayur Vihar Pocket I
+24,Netaji Subash Place [Conn: Pink]
+24,Green Park
+24,Patel Nagar
+24,Sarai
+24,Okhla Bird Sanctuary
+24,Trilokpuri Sanjay Lake
+25,Kohat Enclave
+25,Hauz Khas [Conn: Magenta]
+25,Rajendra Place
+25,N.H.P.C. Chowk
+25,Botanical Garden [Conn: Blue]
+25,Vinod Nagar East
+26,Pitam Pura
+26,Malviya Nagar
+26,Karol Bagh
+26,Mewala Maharajpur
+26,Mandawali - West Vinod Nagar
+27,Rohini East
+27,Saket
+27,Jhandewalan
+27,Sector 28 Faridabad
+27,IP Extension
+28,Rohini West
+28,Qutab Minar
+28,R K Ashram Marg
+28,Badkal Mor
+28,Anand Vihar [Conn: Blue]
+29,Rithala(last station)
+29,Chhattarpur
+29,Rajiv Chowk [Conn: Yellow]
+29,Old Faridabad
+29,Karkar Duma [Conn: Blue]
+30,Sultanpur
+30,Barakhamba
+30,Neelam Chowk Ajronda
+30,Karkarduma Court
+31,Ghitorni
+31,Mandi House [Conn: Violet]
+31,Bata Chowk
+31,Krishna Nagar
+32,Arjan Garh
+32,Supreme Court (Pragati Maidan)
+32,Escorts Mujesar
+32,East Azad Nagar
+33,Guru Dronacharya
+33,Indraprastha
+33,Sant Surdas - Sihi
+33,Welcome [Conn: Red]
+34,Sikandarpur [Conn: Rapid]
+34,Yamuna Bank
+34,Raja Nahar Singh
+34,Jaffrabad
+35,MG Road
+35,Akshardham
+35,Maujpur
+36,IFFCO Chowk
+36,Mayur Vihar Phase-1 [Conn: Pink]
+36,Gokulpuri
+37,Huda City Centre
+37,Mayur Vihar Extention
+37,Johri Enclave
+38,New Ashok Nagar
+38,Shiv Vihar
+39,Noida Sector 15
+40,Noida Sector 16
+41,Noida Sector 18
+42,Botanical Garden [Conn: Magenta]
+43,Golf Course
+44,Noida City Center
+45,Noida Sector 34
+46,Noida Sector 52 [Conn: Aqua]
+47,Noida Sector 61
+48,Noida Sector 59
+49,Noida Sector 62
