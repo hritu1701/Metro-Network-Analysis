@@ -1,76 +1,113 @@
 # Metro Station Connectivity Analysis
 
-Small college assignment project on metro network analysis using graph methods and machine learning.
+[![Python](https://img.shields.io/badge/Python-3.9+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Apache Spark](https://img.shields.io/badge/Apache%20Spark-GraphX-E25A1C?logo=apachespark&logoColor=white)](https://spark.apache.org/graphx/)
+[![NetworkX](https://img.shields.io/badge/NetworkX-Graph%20Analytics-5A9BD5)](https://networkx.org/)
+[![Status](https://img.shields.io/badge/Project-Assignment%20Ready-2EA44F)](#)
 
-## Assignment Objectives
+Graph-based analysis of a metro network using **GraphX + Python visualization**, with station ranking via **Degree Centrality** and **PageRank**, plus a **Random Forest demo** for traffic prediction workflow.
 
-- Load metro route data and construct a directed graph.
-- Compute degree centrality to find busiest stations.
-- Identify least connected and isolated stations.
-- Compute PageRank to rank station importance.
-- Visualize metro network connectivity.
-- Train a Random Forest model to predict passenger traffic.
+---
 
-## Project Files
+## What This Project Covers
 
-- `metro.csv` - source dataset.
-- `metro_assignment.py` - one-command terminal workflow for all assignment tasks.
-- `metro_visual.py` - enhanced metro visualization (map + PageRank panel).
-- `metro_gx.scala` - GraphX script for Spark shell.
-- `metro_nodes/`, `metro_edges/` - exported graph artifacts.
+- Build a directed metro graph from `metro.csv`
+- Identify busiest and least connected stations
+- Detect isolated stations
+- Rank stations using PageRank
+- Generate clean dashboard visualizations
+- Demonstrate ML pipeline for traffic prediction
 
-## Requirements
+---
 
-- Python 3.9+
-- `pandas`
-- `networkx`
-- `matplotlib`
-- `numpy`
-- `scikit-learn`
+## Project Structure
 
-Install:
+| File / Folder | Purpose |
+|---|---|
+| `metro.csv` | Source dataset (stations, lines, coordinates) |
+| `metro_gx.scala` | Spark GraphX script (degree, isolated, PageRank) |
+| `metro_assignment.py` | End-to-end assignment runner |
+| `metro_visual.py` | Dashboard and panel image generator |
+| `dashboard_images/` | Exported dashboard PNG files |
+| `metro_nodes/`, `metro_edges/` | Graph artifacts |
+| `Metro_Station_Connectivity_Analysis_Report.docx` | Final report document |
 
-```bash
-python3 -m pip install pandas networkx matplotlib numpy scikit-learn
-```
+---
 
-## Run Complete Assignment in Terminal
-
-From project folder:
+## Quick Start (Terminal)
 
 ```bash
 cd /Users/hrituraj/Desktop/clusterproject
+python3 -m pip install pandas networkx matplotlib numpy scikit-learn
 python3 metro_assignment.py
+python3 metro_visual.py
 ```
 
-Outputs generated:
+---
 
-- Console report with busiest/least/isolated stations and top PageRank stations.
-- `metro_connectivity.png` network connectivity visualization.
-- `station_analysis_with_predictions.csv` with predicted traffic values.
+## Outputs You Get
 
-## GraphX Version (Spark)
+### Analysis outputs
+- Console summary: busiest, least connected, isolated, top PageRank stations
+- `station_analysis_with_predictions.csv`
 
-Run in Spark shell:
+### Dashboard outputs
+- `metro_dashboard.png` (combined dashboard)
+- `dashboard_images/metro_map_view.png`
+- `dashboard_images/metro_connectivity_topology.png`
+- `dashboard_images/metro_pagerank_top12.png`
+- `dashboard_images/metro_stations_per_line.png`
+
+---
+
+## GraphX Run (Spark Shell)
 
 ```bash
 cd /Users/hrituraj/Desktop/clusterproject
 spark-shell
 ```
 
-Then inside Spark shell:
+Inside Spark shell:
 
 ```scala
 :load metro_gx.scala
 ```
 
-Optional dataset path override:
+Optional CSV override:
 
 ```bash
 METRO_CSV_PATH=/full/path/to/metro.csv spark-shell
 ```
 
-## Important Note for Report
+---
 
-The dataset does not include real passenger-count labels.  
-For the Random Forest step, `metro_assignment.py` creates a clearly marked **traffic proxy target** from graph features (`degree`, `pagerank`, `num_lines`) to demonstrate the ML pipeline expected in the assignment.
+## Dashboard Preview
+
+### Full Dashboard
+![Metro Dashboard](dashboard_images/metro_dashboard.png)
+
+### Connectivity Topology
+![Metro Connectivity Topology](dashboard_images/metro_connectivity_topology.png)
+
+---
+
+## Method Snapshot
+
+1. Clean and normalize station data  
+2. Build directed graph line-wise by station order  
+3. Compute degree and PageRank metrics  
+4. Render map + topology + ranking visuals  
+5. Run Random Forest on graph-derived features
+
+---
+
+## Important Academic Note
+
+The dataset does **not** contain real passenger-count labels.  
+The Random Forest stage uses a clearly marked **traffic proxy target** (derived from graph features) to demonstrate ML workflow for assignment purposes.
+
+---
+
+## Repository
+
+GitHub: [Metro-Network-Analysis](https://github.com/hritu1701/Metro-Network-Analysis)

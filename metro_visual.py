@@ -87,6 +87,126 @@ def build_station_graph(df: pd.DataFrame) -> nx.Graph:
     return graph
 
 
+def save_individual_panels(
+    df: pd.DataFrame, graph: nx.Graph, pagerank: dict[str, float], top_stations: list[tuple[str, float]]
+) -> None:
+    output_dir = Path(__file__).with_name("dashboard_images")
+    output_dir.mkdir(exist_ok=True)
+
+    nodes = list(graph.nodes())
+    x = [graph.nodes[node]["lon"] for node in nodes]
+    y = [graph.nodes[node]["lat"] for node in nodes]
+    colors = [pagerank[node] for node in nodes]
+    sizes = [140 + pagerank[node] * 22000 for node in nodes]
+
+    # 1) Geographic map panel
+    fig_map, ax_map = plt.subplots(figsize=(9, 8))
+    for line_name, line_df in df.groupby("Metro Line"):
+        ordered = line_df.sort_values("Dist. From First Station(km)")
+        color = LINE_COLORS.get(line_name, "#4f4f4f")
+        ax_map.plot(
+            ordered["Longitude"],
+            ordered["Latitude"],
+            color=color,
+            linewidth=1.8,
+            alpha=0.45,
+            zorder=1,
+        )
+    scatter = ax_map.scatter(
+        x, y, c=colors, s=sizes, cmap="plasma", edgecolor="white", linewidth=0.6, zorder=2
+    )
+    label_offsets = [(6, 6), (-42, 8), (8, -13), (12, 12), (-56, -4), (8, 14)]
+    for idx, (station_key, _) in enumerate(top_stations[:6]):
+        dx, dy = label_offsets[idx % len(label_offsets)]
+        ax_map.annotate(
+            clean_label(graph.nodes[station_key]["label"]),
+            (graph.nodes[station_key]["lon"], graph.nodes[station_key]["lat"]),
+            fontsize=7,
+            xytext=(dx, dy),
+            textcoords="offset points",
+            bbox={"boxstyle": "round,pad=0.2", "fc": "white", "alpha": 0.65, "ec": "none"},
+        )
+    ax_map.set_title("Metro Geographic Map")
+    ax_map.set_xlabel("Longitude")
+    ax_map.set_ylabel("Latitude")
+    ax_map.grid(alpha=0.2, linestyle="--")
+    ax_map.set_aspect("equal", adjustable="box")
+    cbar = fig_map.colorbar(scatter, ax=ax_map, fraction=0.03, pad=0.02)
+    cbar.set_label("PageRank Score", fontsize=9)
+    fig_map.tight_layout()
+    fig_map.savefig(output_dir / "metro_map_view.png", dpi=220)
+    plt.close(fig_map)
+
+    # 2) Topology connectivity panel
+    fig_conn, ax_conn = plt.subplots(figsize=(9, 8))
+    pos_topology = nx.spring_layout(graph, seed=42, k=0.33, iterations=80)
+    topo_sizes = [90 + pagerank[node] * 12000 for node in nodes]
+    topo_colors = [pagerank[node] for node in nodes]
+    nx.draw_networkx_edges(
+        graph,
+        pos_topology,
+        ax=ax_conn,
+        edge_color="#A0A0A0",
+        alpha=0.25,
+        width=0.7,
+    )
+    nx.draw_networkx_nodes(
+        graph,
+        pos_topology,
+        ax=ax_conn,
+        node_size=topo_sizes,
+        node_color=topo_colors,
+        cmap="plasma",
+        edgecolors="white",
+        linewidths=0.45,
+    )
+    for station_key, _ in top_stations[:5]:
+        ax_conn.text(
+            pos_topology[station_key][0],
+            pos_topology[station_key][1],
+            clean_label(graph.nodes[station_key]["label"]),
+            fontsize=7,
+            ha="left",
+            va="bottom",
+            bbox={"boxstyle": "round,pad=0.15", "fc": "white", "alpha": 0.6, "ec": "none"},
+        )
+    ax_conn.set_title("Metro Connectivity Topology")
+    ax_conn.set_axis_off()
+    fig_conn.tight_layout()
+    fig_conn.savefig(output_dir / "metro_connectivity_topology.png", dpi=220)
+    plt.close(fig_conn)
+
+    # 3) PageRank top stations panel
+    fig_rank, ax_rank = plt.subplots(figsize=(8, 6))
+    rank_labels = [clean_label(graph.nodes[station]["label"]) for station, _ in top_stations]
+    rank_scores = [score for _, score in top_stations]
+    ax_rank.barh(rank_labels[::-1], rank_scores[::-1], color="#6f63d9", alpha=0.92)
+    ax_rank.set_title("Top Stations by PageRank")
+    ax_rank.set_xlabel("PageRank Score")
+    ax_rank.tick_params(axis="y", labelsize=8)
+    ax_rank.tick_params(axis="x", labelsize=8)
+    ax_rank.grid(axis="x", alpha=0.2, linestyle="--")
+    fig_rank.tight_layout()
+    fig_rank.savefig(output_dir / "metro_pagerank_top12.png", dpi=220)
+    plt.close(fig_rank)
+
+    # 4) Stations per line panel
+    fig_line, ax_line = plt.subplots(figsize=(8, 6))
+    line_counts = df.groupby("Metro Line")["Station Names"].nunique().sort_values(ascending=False).head(8)
+    bar_colors = [LINE_COLORS.get(line, "#4f4f4f") for line in line_counts.index]
+    ax_line.barh(line_counts.index[::-1], line_counts.values[::-1], color=bar_colors[::-1], alpha=0.9)
+    ax_line.set_title("Stations per Metro Line (Top 8)")
+    ax_line.set_xlabel("Unique Stations")
+    ax_line.tick_params(axis="y", labelsize=8)
+    ax_line.tick_params(axis="x", labelsize=8)
+    ax_line.grid(axis="x", alpha=0.2, linestyle="--")
+    fig_line.tight_layout()
+    fig_line.savefig(output_dir / "metro_stations_per_line.png", dpi=220)
+    plt.close(fig_line)
+
+    print(f"Saved panel PNG files to: {output_dir}")
+
+
 def visualize(df: pd.DataFrame, graph: nx.Graph) -> None:
     pagerank = nx.pagerank(graph, alpha=0.9)
     top_stations = sorted(pagerank.items(), key=lambda pair: pair[1], reverse=True)[:12]
@@ -221,6 +341,7 @@ def visualize(df: pd.DataFrame, graph: nx.Graph) -> None:
     output_path = Path(__file__).with_name("metro_dashboard.png")
     plt.savefig(output_path, dpi=220)
     print(f"Saved dashboard: {output_path}")
+    save_individual_panels(df, graph, pagerank, top_stations)
     plt.show()
 
 
