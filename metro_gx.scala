@@ -3,10 +3,7 @@ import org.apache.spark.rdd.RDD
 import scala.util.hashing.MurmurHash3
 
 val datasetPath = sys.env.getOrElse("METRO_CSV_PATH", "metro.csv")
-val df = spark.read
-  .option("header", "true")
-  .option("inferSchema", "true")
-  .csv(datasetPath)
+val df = spark.read.option("header", "true").option("inferSchema", "true").csv(datasetPath)
 
 def normalizeStation(name: String): String =
   name.replaceAll("\\[.*?\\]", "").replaceAll("\\s+", " ").trim.toLowerCase
@@ -58,18 +55,18 @@ deg.join(vertices).collect().foreach { case (_, (degree, name)) =>
 }
 
 println("\n===== BUSIEST =====")
-deg.join(vertices).sortBy(_._2._1, ascending = false).take(10).foreach {
+deg.join(vertices).sortBy(_._2._1, false).take(10).foreach {
   case (_, (degree, name)) => println(s"$name -> degree=$degree")
 }
 
 println("\n===== LEAST CONNECTED =====")
-deg.join(vertices).sortBy(_._2._1, ascending = true).take(10).foreach {
+deg.join(vertices).sortBy(_._2._1, true).take(10).foreach {
   case (_, (degree, name)) => println(s"$name -> degree=$degree")
 }
 
 println("\n===== ISOLATED STATIONS =====")
 val isolated = graph.vertices.leftOuterJoin(deg).filter { case (_, (_, d)) => d.isEmpty }
-if (isolated.isEmpty()) {
+if (isolated.take(1).isEmpty) {
   println("No isolated stations found in the constructed network.")
 } else {
   isolated.collect().foreach { case (_, (name, _)) => println(name) }
@@ -78,14 +75,14 @@ if (isolated.isEmpty()) {
 val ranks = graph.pageRank(0.0001).vertices
 
 println("\n===== PAGERANK =====")
-ranks.join(vertices).sortBy(_._2._1, ascending = false).take(15).foreach {
+ranks.join(vertices).sortBy(_._2._1, false).take(15).foreach {
   case (_, (rank, name)) => println(f"$name -> PageRank=$rank%.6f")
 }
 
 println("\n===== IN/OUT DEGREE SNAPSHOT =====")
-inDeg.join(vertices).sortBy(_._2._1, ascending = false).take(5).foreach {
+inDeg.join(vertices).sortBy(_._2._1, false).take(5).foreach {
   case (_, (value, name)) => println(s"$name -> inDegree=$value")
 }
-outDeg.join(vertices).sortBy(_._2._1, ascending = false).take(5).foreach {
+outDeg.join(vertices).sortBy(_._2._1, false).take(5).foreach {
   case (_, (value, name)) => println(s"$name -> outDegree=$value")
 }

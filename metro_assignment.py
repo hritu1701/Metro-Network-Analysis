@@ -146,8 +146,8 @@ def visualize_connectivity(graph: nx.DiGraph, out_file: Path) -> None:
 def train_random_forest(stats_df: pd.DataFrame) -> None:
     try:
         from sklearn.ensemble import RandomForestRegressor
-        from sklearn.metrics import mean_absolute_error, r2_score
-        from sklearn.model_selection import train_test_split
+        from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+        from sklearn.model_selection import KFold, cross_val_score, train_test_split
     except ImportError:
         print(
             "\nRandom Forest step skipped. Install scikit-learn with: "
@@ -176,10 +176,23 @@ def train_random_forest(stats_df: pd.DataFrame) -> None:
     model = RandomForestRegressor(n_estimators=400, random_state=42)
     model.fit(x_train, y_train)
     preds = model.predict(x_test)
+    rmse = np.sqrt(mean_squared_error(y_test, preds))
+
+    cv_folds = min(5, len(df))
+    cv_mean = None
+    cv_std = None
+    if cv_folds >= 2:
+        cv = KFold(n_splits=cv_folds, shuffle=True, random_state=42)
+        cv_scores = cross_val_score(model, features, target, cv=cv, scoring="r2")
+        cv_mean = cv_scores.mean()
+        cv_std = cv_scores.std()
 
     print("\n===== RANDOM FOREST TRAFFIC PREDICTION =====")
     print(f"R2 Score: {r2_score(y_test, preds):.4f}")
     print(f"MAE: {mean_absolute_error(y_test, preds):.2f}")
+    print(f"RMSE: {rmse:.2f}")
+    if cv_mean is not None and cv_std is not None:
+        print(f"Cross-Validation R2 ({cv_folds}-fold): {cv_mean:.4f} (+/- {cv_std:.4f})")
 
     fi = pd.DataFrame(
         {"feature": features.columns, "importance": model.feature_importances_}

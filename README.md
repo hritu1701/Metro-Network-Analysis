@@ -31,6 +31,8 @@ Graph-based analysis of a metro network using **GraphX + Python visualization**,
 | `dashboard_images/` | Exported dashboard PNG files |
 | `metro_nodes/`, `metro_edges/` | Graph artifacts |
 | `Metro_Station_Connectivity_Analysis_Report.docx` | Final report document |
+| `Scala_and_Dashboard_Viva_Guide.pdf` | Viva prep guide (line-by-line Scala + dashboard explanation) |
+| `Metro_Station_Connectivity_Analysis_Presentation.pptx` | Final project presentation |
 
 ---
 
@@ -50,6 +52,7 @@ python3 metro_visual.py
 ### Analysis outputs
 - Console summary: busiest, least connected, isolated, top PageRank stations
 - `station_analysis_with_predictions.csv`
+- `metro_connectivity.png` (network connectivity visualization)
 
 ### Dashboard outputs
 - `metro_dashboard.png` (combined dashboard)
@@ -57,6 +60,7 @@ python3 metro_visual.py
 - `dashboard_images/metro_connectivity_topology.png`
 - `dashboard_images/metro_pagerank_top12.png`
 - `dashboard_images/metro_stations_per_line.png`
+- `dashboard_images/metro_connectivity.png` (legacy connectivity render)
 
 ---
 
@@ -98,6 +102,24 @@ METRO_CSV_PATH=/full/path/to/metro.csv spark-shell
 3. Compute degree and PageRank metrics  
 4. Render map + topology + ranking visuals  
 5. Run Random Forest on graph-derived features
+
+---
+
+## Model Evaluation (Latest)
+
+The Random Forest block now reports:
+
+- `R2 Score`
+- `MAE`
+- `RMSE`
+- `Cross-Validation R2 (5-fold)`
+
+Latest observed run:
+
+- `R2`: **0.9116**
+- `MAE`: **2796.14**
+- `RMSE`: **6471.72**
+- `CV R2 (5-fold)`: **0.9653 +/- 0.0230**
 
 ---
 
